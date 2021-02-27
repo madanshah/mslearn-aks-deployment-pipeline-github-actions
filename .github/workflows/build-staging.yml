@@ -1,5 +1,3 @@
-name: Build and push the latest build to staging
-
 on:
   push:
     branches: [ main ]
@@ -19,3 +17,7 @@ jobs:
           registry: ${{ secrets.ACR_NAME }}
           repository: contoso-website
           tags: latest
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build_push_image # Will wait for the execution of the previous job
